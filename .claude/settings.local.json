@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node cli.js assign \"John Smith\" officer)",
+      "Bash(node cli.js assign \"Maria Garcia\" sergeant)",
+      "Bash(node cli.js assign \"Tom Reed\" detective)",
+      "Bash(node cli.js promote \"John Smith\" sergeant)",
+      "Bash(node cli.js list)",
+      "Bash(npm install:*)",
+      "Bash(node -e \"const {assignBadge, promoteBadge, listBadges} = require\\(''./badgeManager''\\); assignBadge\\(''Sarah Reyes'', ''lieutenant''\\); listBadges\\(\\);\")",
+      "Bash(curl -s -X POST http://localhost:3000/api/assign -H \"Content-Type: application/json\" -d '{\"\"name\"\":\"\"Test Officer\"\",\"\"rank\"\":\"\"officer\"\"}')"
+    ]
+  }
+}

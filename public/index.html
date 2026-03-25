@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LAPD Badge Number Generator</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <img src="lapd-badge.svg" alt="LAPD Badge" class="badge-icon" />
+      <div>
+        <h1>LAPD Badge Number Generator</h1>
+        <p class="subtitle">Los Angeles Police Department &mdash; GTA V RP</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ASSIGN -->
+    <section class="card" id="section-assign">
+      <h2>Assign Badge</h2>
+      <form id="form-assign">
+        <div class="field-row">
+          <input type="text" id="assign-name" placeholder="Officer Name" required />
+          <select id="assign-rank">
+            <option value="officer">Officer</option>
+            <option value="sergeant">Sergeant</option>
+            <option value="lieutenant">Lieutenant</option>
+            <option value="detective">Detective</option>
+          </select>
+          <button type="submit" class="btn btn-blue">Assign</button>
+        </div>
+      </form>
+      <div id="assign-result" class="result-box hidden"></div>
+    </section>
+
+    <!-- PROMOTE -->
+    <section class="card" id="section-promote">
+      <h2>Promote Officer</h2>
+      <form id="form-promote">
+        <div class="field-row">
+          <input type="text" id="promote-name" placeholder="Officer Name" required />
+          <select id="promote-rank">
+            <option value="officer">Officer</option>
+            <option value="sergeant">Sergeant</option>
+            <option value="lieutenant">Lieutenant</option>
+            <option value="detective">Detective</option>
+          </select>
+          <button type="submit" class="btn btn-gold">Promote</button>
+        </div>
+      </form>
+      <div id="promote-result" class="result-box hidden"></div>
+    </section>
+
+    <!-- LOOKUP / REMOVE -->
+    <section class="card" id="section-lookup">
+      <h2>Lookup / Remove</h2>
+      <div class="field-row">
+        <input type="text" id="lookup-name" placeholder="Officer Name" />
+        <button class="btn btn-blue" onclick="doLookup()">Lookup</button>
+        <button class="btn btn-red" onclick="doRemove()">Remove</button>
+      </div>
+      <div id="lookup-result" class="result-box hidden"></div>
+    </section>
+
+    <!-- ROSTER -->
+    <section class="card" id="section-roster">
+      <div class="roster-header">
+        <h2>Roster</h2>
+        <div class="filter-tabs">
+          <button class="tab active" data-rank="">All</button>
+          <button class="tab" data-rank="officer">Officers</button>
+          <button class="tab" data-rank="sergeant">Sergeants</button>
+          <button class="tab" data-rank="lieutenant">Lieutenants</button>
+          <button class="tab" data-rank="detective">Detectives</button>
+        </div>
+      </div>
+      <table id="roster-table">
+        <thead>
+          <tr>
+            <th>Badge #</th>
+            <th>Rank</th>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="roster-body">
+          <tr><td colspan="4" class="empty-msg">No personnel on record.</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+  </main>
+
+  <!-- Toast notification -->
+  <div id="toast" class="toast hidden"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>

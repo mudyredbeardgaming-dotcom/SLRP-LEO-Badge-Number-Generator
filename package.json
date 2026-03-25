@@ -1,0 +1,16 @@
+{
+  "name": "lapd-badge-generator",
+  "version": "1.0.0",
+  "description": "Badge number generator for LAPD GTA5 RP server",
+  "main": "badgeManager.js",
+  "bin": {
+    "badge": "./cli.js"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "cli": "node cli.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}

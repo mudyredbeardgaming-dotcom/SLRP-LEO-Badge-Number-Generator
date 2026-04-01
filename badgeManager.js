@@ -1,10 +1,11 @@
 const mongoose = require("mongoose");
 
 const RANK_RANGES = {
-  officer:    { min: 1000, max: 4999 },
-  sergeant:   { min: 5000, max: 5999 },
-  lieutenant: { min: 6000, max: 6999 },
-  detective:  { min: 7000, max: 9999 },
+  lieutenant: { min: 1000, max: 1200 },
+  detective:  { min: 2000, max: 2100 },
+  sergeant:   { min: 3000, max: 3100 },
+  p3:         { min: 4000, max: 4100 },
+  officer:    { min: 5000, max: 5100 },
 };
 
 const officerSchema = new mongoose.Schema({
@@ -39,7 +40,7 @@ async function generateBadgeNumber(rank) {
 async function assignBadge(name, rank) {
   rank = rank.toLowerCase();
   if (!RANK_RANGES[rank])
-    throw new Error(`Invalid rank: "${rank}". Must be officer, sergeant, lieutenant, or detective.`);
+    throw new Error(`Invalid rank: "${rank}". Must be officer, p3, sergeant, detective, or lieutenant.`);
 
   const existing = await Officer.findOne({ name });
   if (existing)
@@ -59,7 +60,7 @@ async function assignBadge(name, rank) {
 async function promoteBadge(name, newRank) {
   newRank = newRank.toLowerCase();
   if (!RANK_RANGES[newRank])
-    throw new Error(`Invalid rank: "${newRank}". Must be officer, sergeant, lieutenant, or detective.`);
+    throw new Error(`Invalid rank: "${newRank}". Must be officer, p3, sergeant, detective, or lieutenant.`);
 
   const officer = await Officer.findOne({ name });
   if (!officer) throw new Error(`No record found for "${name}". Use assignBadge() first.`);

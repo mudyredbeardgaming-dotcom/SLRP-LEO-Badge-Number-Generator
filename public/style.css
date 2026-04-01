@@ -237,10 +237,11 @@ tbody td {
   letter-spacing: 0.5px;
 }
 
-.rank-officer    { background: rgba(0,48,135,0.5);   color: #79c0ff;        border: 1px solid #003087; }
-.rank-sergeant   { background: rgba(200,169,81,0.2); color: var(--gold-lt); border: 1px solid var(--gold); }
-.rank-lieutenant { background: rgba(88,166,255,0.15); color: #a5d6ff;       border: 1px solid #58a6ff; }
-.rank-detective  { background: rgba(192,57,43,0.2);  color: #ff9e9e;        border: 1px solid var(--red); }
+.rank-officer    { background: rgba(0,48,135,0.5);    color: #79c0ff;        border: 1px solid #003087; }
+.rank-p3         { background: rgba(0,48,135,0.3);    color: #a8c8ff;        border: 1px solid #4a7fc1; }
+.rank-sergeant   { background: rgba(200,169,81,0.2);  color: var(--gold-lt); border: 1px solid var(--gold); }
+.rank-lieutenant { background: rgba(88,166,255,0.15); color: #a5d6ff;        border: 1px solid #58a6ff; }
+.rank-detective  { background: rgba(192,57,43,0.2);   color: #ff9e9e;        border: 1px solid var(--red); }
 
 .btn-sm {
   padding: 4px 12px;

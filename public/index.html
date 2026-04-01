@@ -27,10 +27,11 @@
         <div class="field-row">
           <input type="text" id="assign-name" placeholder="Officer Name" required />
           <select id="assign-rank">
-            <option value="officer">Officer</option>
-            <option value="sergeant">Sergeant</option>
             <option value="lieutenant">Lieutenant</option>
             <option value="detective">Detective</option>
+            <option value="sergeant">Sergeant</option>
+            <option value="p3">P3</option>
+            <option value="officer">Officer</option>
           </select>
           <button type="submit" class="btn btn-blue">Assign</button>
         </div>
@@ -45,10 +46,11 @@
         <div class="field-row">
           <input type="text" id="promote-name" placeholder="Officer Name" required />
           <select id="promote-rank">
-            <option value="officer">Officer</option>
-            <option value="sergeant">Sergeant</option>
             <option value="lieutenant">Lieutenant</option>
             <option value="detective">Detective</option>
+            <option value="sergeant">Sergeant</option>
+            <option value="p3">P3</option>
+            <option value="officer">Officer</option>
           </select>
           <button type="submit" class="btn btn-gold">Promote</button>
         </div>
@@ -73,10 +75,11 @@
         <h2>Roster</h2>
         <div class="filter-tabs">
           <button class="tab active" data-rank="">All</button>
-          <button class="tab" data-rank="officer">Officers</button>
-          <button class="tab" data-rank="sergeant">Sergeants</button>
           <button class="tab" data-rank="lieutenant">Lieutenants</button>
           <button class="tab" data-rank="detective">Detectives</button>
+          <button class="tab" data-rank="sergeant">Sergeants</button>
+          <button class="tab" data-rank="p3">P3</button>
+          <button class="tab" data-rank="officer">Officers</button>
         </div>
       </div>
       <table id="roster-table">

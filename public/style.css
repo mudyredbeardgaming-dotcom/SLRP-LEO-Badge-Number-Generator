@@ -294,6 +294,12 @@ tbody td {
 .dept-btn[data-dept="lapd"].active { background: #003087; color: #c8a951; }
 .dept-btn[data-dept="lasd"].active { background: #1e4d2b; color: #7ec891; }
 
+#assign-badge-number {
+  flex: 0 0 auto;
+  min-width: unset;
+  width: 158px;
+}
+
 .btn-sm {
   padding: 4px 12px;
   font-size: 0.78rem;

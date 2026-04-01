@@ -12,11 +12,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Assign a new badge
 app.post("/api/assign", async (req, res) => {
-  const { name, rank, department } = req.body;
+  const { name, rank, department, badgeNumber } = req.body;
   if (!name || !rank || !department)
     return res.status(400).json({ error: "name, rank, and department are required." });
   try {
-    const result = await assignBadge(name.trim(), rank.trim(), department.trim());
+    const result = await assignBadge(name.trim(), rank.trim(), department.trim(), badgeNumber ?? null);
     res.json({ success: true, data: result });
   } catch (err) {
     res.status(400).json({ error: err.message });

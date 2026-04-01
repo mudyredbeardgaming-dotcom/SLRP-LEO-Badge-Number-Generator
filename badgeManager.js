@@ -57,7 +57,7 @@ function validateDeptRank(department, rank) {
     throw new Error(`Invalid rank "${rank}" for ${department.toUpperCase()}.`);
 }
 
-async function assignBadge(name, rank, department) {
+async function assignBadge(name, rank, department, manualBadgeNumber = null) {
   department = department.toLowerCase();
   rank = rank.toLowerCase();
   validateDeptRank(department, rank);
@@ -66,7 +66,23 @@ async function assignBadge(name, rank, department) {
   if (existing)
     throw new Error(`"${name}" already has a ${department.toUpperCase()} badge (#${existing.badgeNumber}). Use promoteBadge() to update.`);
 
-  const badgeNumber = await generateBadgeNumber(department, rank);
+  let badgeNumber;
+  if (manualBadgeNumber !== null) {
+    const num = parseInt(manualBadgeNumber, 10);
+    if (isNaN(num)) throw new Error("Badge number must be a valid number.");
+
+    const { min, max } = RANK_RANGES[department][rank];
+    if (num < min || num > max)
+      throw new Error(`Badge #${num} is outside the ${rank} range (${min}–${max}) for ${department.toUpperCase()}.`);
+
+    const taken = await Officer.findOne({ department, badgeNumber: num });
+    if (taken) throw new Error(`Badge #${num} is already assigned to ${taken.name}.`);
+
+    badgeNumber = num;
+  } else {
+    badgeNumber = await generateBadgeNumber(department, rank);
+  }
+
   const officer = await Officer.create({ name, department, rank, badgeNumber });
 
   console.log(`[ASSIGNED] [${department.toUpperCase()}] ${name} | ${rank.toUpperCase()} | #${badgeNumber}`);

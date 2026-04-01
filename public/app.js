@@ -126,14 +126,18 @@ function switchDepartment(dept) {
 // ── ASSIGN ────────────────────────────────────────────────────
 document.getElementById("form-assign").addEventListener("submit", async (e) => {
   e.preventDefault();
-  const name = document.getElementById("assign-name").value.trim();
-  const rank = document.getElementById("assign-rank").value;
-  const res  = await api("POST", "/api/assign", { name, rank, department: currentDepartment });
+  const name        = document.getElementById("assign-name").value.trim();
+  const rank        = document.getElementById("assign-rank").value;
+  const manualInput = document.getElementById("assign-badge-number").value.trim();
+  const body        = { name, rank, department: currentDepartment };
+  if (manualInput) body.badgeNumber = parseInt(manualInput, 10);
+  const res  = await api("POST", "/api/assign", body);
   if (res.success) {
     const d = res.data;
     showResult("assign-result", `Assigned Badge <strong>#${d.badgeNumber}</strong> to <strong>${d.name}</strong> as ${rankPill(d.rank)}`);
     showToast(`Badge #${d.badgeNumber} assigned to ${d.name}`);
     document.getElementById("assign-name").value = "";
+    document.getElementById("assign-badge-number").value = "";
     loadRoster();
   } else {
     showResult("assign-result", res.error || "Unknown error.", true);

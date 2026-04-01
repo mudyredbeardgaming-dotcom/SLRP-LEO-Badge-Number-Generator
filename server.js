@@ -72,8 +72,20 @@ app.get("/api/list", async (req, res) => {
 // Connect to MongoDB then start server
 mongoose
   .connect(process.env.MONGODB_URI)
-  .then(() => {
+  .then(async () => {
     console.log("Connected to MongoDB");
+
+    // Drop legacy single-field indexes left over from the original schema
+    // (before department support was added). Safe to run every startup —
+    // dropIndex throws if the index doesn't exist, which we ignore.
+    const col = mongoose.connection.collection("officers");
+    for (const idx of ["name_1", "badgeNumber_1"]) {
+      try {
+        await col.dropIndex(idx);
+        console.log(`Dropped legacy index: ${idx}`);
+      } catch (_) { /* already gone */ }
+    }
+
     app.listen(PORT, () => {
       console.log(`LAPD Badge Manager running at http://localhost:${PORT}`);
     });

@@ -15,7 +15,7 @@ const DEPT_CONFIG = {
   lasd: {
     title:    "LASD Badge Number Generator",
     subtitle: "Los Angeles Sheriff\u2019s Department \u2014 GTA V RP",
-    seal:     "Seal_of_Los_Angeles,_California.png",
+    seal:     "LASD logo.png",
     ranks: [
       { value: "lieutenant", label: "Lieutenant"  },
       { value: "detective",  label: "Detective"   },

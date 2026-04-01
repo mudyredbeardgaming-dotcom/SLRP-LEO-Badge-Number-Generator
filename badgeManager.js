@@ -3,9 +3,9 @@ const mongoose = require("mongoose");
 const RANK_RANGES = {
   lieutenant: { min: 1000, max: 1200 },
   detective:  { min: 2000, max: 2100 },
-  sergeant:   { min: 3000, max: 3100 },
-  p3:         { min: 4000, max: 4100 },
-  officer:    { min: 5000, max: 5100 },
+  sergeant:   { min: 2000, max: 2100 },
+  p3:         { min: 3000, max: 3100 },
+  officer:    { min: 4000, max: 4100 },
 };
 
 const officerSchema = new mongoose.Schema({

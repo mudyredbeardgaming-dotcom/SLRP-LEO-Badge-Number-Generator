@@ -3,22 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LAPD Badge Number Generator</title>
+  <title>Badge Number Generator</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
   <header>
     <div class="header-inner">
-      <img src="Seal_of_Los_Angeles,_California.png" alt="City of Los Angeles Seal" class="badge-icon" />
+      <img id="dept-seal" src="Seal_of_Los_Angeles,_California.png" alt="Department Seal" class="badge-icon" />
       <div>
-        <h1>LAPD Badge Number Generator</h1>
-        <p class="subtitle">Los Angeles Police Department &mdash; GTA V RP</p>
+        <h1 id="dept-title">LAPD Badge Number Generator</h1>
+        <p class="subtitle" id="dept-subtitle">Los Angeles Police Department &mdash; GTA V RP</p>
       </div>
     </div>
   </header>
 
   <main>
+
+    <!-- DEPARTMENT SELECTOR -->
+    <div class="dept-selector">
+      <button class="dept-btn active" data-dept="lapd">LAPD</button>
+      <button class="dept-btn" data-dept="lasd">LASD</button>
+    </div>
 
     <!-- ASSIGN -->
     <section class="card" id="section-assign">
@@ -26,14 +32,8 @@
       <form id="form-assign">
         <div class="field-row">
           <input type="text" id="assign-name" placeholder="Officer Name" required />
-          <select id="assign-rank">
-            <option value="lieutenant">Lieutenant</option>
-            <option value="detective">Detective</option>
-            <option value="sergeant">Sergeant</option>
-            <option value="p3">P3</option>
-            <option value="officer">Officer</option>
-          </select>
-          <button type="submit" class="btn btn-blue">Assign</button>
+          <select id="assign-rank"></select>
+          <button type="submit" class="btn btn-primary">Assign</button>
         </div>
       </form>
       <div id="assign-result" class="result-box hidden"></div>
@@ -45,13 +45,7 @@
       <form id="form-promote">
         <div class="field-row">
           <input type="text" id="promote-name" placeholder="Officer Name" required />
-          <select id="promote-rank">
-            <option value="lieutenant">Lieutenant</option>
-            <option value="detective">Detective</option>
-            <option value="sergeant">Sergeant</option>
-            <option value="p3">P3</option>
-            <option value="officer">Officer</option>
-          </select>
+          <select id="promote-rank"></select>
           <button type="submit" class="btn btn-gold">Promote</button>
         </div>
       </form>
@@ -63,7 +57,7 @@
       <h2>Lookup / Remove</h2>
       <div class="field-row">
         <input type="text" id="lookup-name" placeholder="Officer Name" />
-        <button class="btn btn-blue" onclick="doLookup()">Lookup</button>
+        <button class="btn btn-primary" onclick="doLookup()">Lookup</button>
         <button class="btn btn-red" onclick="doRemove()">Remove</button>
       </div>
       <div id="lookup-result" class="result-box hidden"></div>
@@ -72,15 +66,8 @@
     <!-- ROSTER -->
     <section class="card" id="section-roster">
       <div class="roster-header">
-        <h2>Roster</h2>
-        <div class="filter-tabs">
-          <button class="tab active" data-rank="">All</button>
-          <button class="tab" data-rank="lieutenant">Lieutenants</button>
-          <button class="tab" data-rank="detective">Detectives</button>
-          <button class="tab" data-rank="sergeant">Sergeants</button>
-          <button class="tab" data-rank="p3">P3</button>
-          <button class="tab" data-rank="officer">Officers</button>
-        </div>
+        <h2 id="roster-title">LAPD Roster</h2>
+        <div class="filter-tabs" id="filter-tabs"></div>
       </div>
       <table id="roster-table">
         <thead>

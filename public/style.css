@@ -2,16 +2,29 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --blue:    #003087;   /* LAPD navy */
-  --gold:    #c8a951;   /* LAPD gold */
-  --gold-lt: #e8c96e;
-  --red:     #c0392b;
-  --bg:      #0d1117;
-  --surface: #161b22;
-  --border:  #2a3240;
-  --text:    #e6edf3;
-  --muted:   #8b949e;
-  --radius:  8px;
+  --blue:       #003087;
+  --gold:       #c8a951;
+  --gold-lt:    #e8c96e;
+  --red:        #c0392b;
+  --bg:         #0d1117;
+  --surface:    #161b22;
+  --border:     #2a3240;
+  --text:       #e6edf3;
+  --muted:      #8b949e;
+  --radius:     8px;
+  /* dept accent — overridden per dept */
+  --dept-primary:   #003087;
+  --dept-accent:    #c8a951;
+  --dept-header-bg: linear-gradient(135deg, #001a5c 0%, #003087 100%);
+  --btn-primary-bg: #003087;
+}
+
+/* LASD overrides */
+body[data-dept="lasd"] {
+  --dept-primary:   #1e4d2b;
+  --dept-accent:    #7ec891;
+  --dept-header-bg: linear-gradient(135deg, #0f2a17 0%, #1e4d2b 100%);
+  --btn-primary-bg: #1e4d2b;
 }
 
 body {
@@ -23,8 +36,9 @@ body {
 
 /* ── Header ───────────────────────────────────────── */
 header {
-  background: linear-gradient(135deg, #001a5c 0%, #003087 100%);
-  border-bottom: 3px solid var(--gold);
+  background: var(--dept-header-bg);
+  border-bottom: 3px solid var(--dept-accent);
+  transition: background 0.3s, border-color 0.3s;
   padding: 20px 32px;
 }
 
@@ -50,7 +64,7 @@ header h1 {
 }
 
 .subtitle {
-  color: var(--gold);
+  color: var(--dept-accent);
   font-size: 0.85rem;
   margin-top: 2px;
   letter-spacing: 1px;
@@ -141,9 +155,10 @@ select:focus {
 .btn:hover  { filter: brightness(1.15); }
 .btn:active { transform: scale(0.97); }
 
-.btn-blue { background: var(--blue); color: #fff; }
-.btn-gold { background: var(--gold); color: #0d1117; }
-.btn-red  { background: var(--red);  color: #fff; }
+.btn-primary { background: var(--dept-primary); color: #fff; transition: background 0.3s; }
+.btn-blue    { background: var(--blue); color: #fff; }
+.btn-gold    { background: var(--gold); color: #0d1117; }
+.btn-red     { background: var(--red);  color: #fff; }
 
 /* ── Result Box ───────────────────────────────────── */
 .result-box {
@@ -237,11 +252,43 @@ tbody td {
   letter-spacing: 0.5px;
 }
 
+/* LAPD rank pills */
 .rank-officer    { background: rgba(0,48,135,0.5);    color: #79c0ff;        border: 1px solid #003087; }
 .rank-p3         { background: rgba(0,48,135,0.3);    color: #a8c8ff;        border: 1px solid #4a7fc1; }
 .rank-sergeant   { background: rgba(200,169,81,0.2);  color: var(--gold-lt); border: 1px solid var(--gold); }
 .rank-lieutenant { background: rgba(88,166,255,0.15); color: #a5d6ff;        border: 1px solid #58a6ff; }
 .rank-detective  { background: rgba(192,57,43,0.2);   color: #ff9e9e;        border: 1px solid var(--red); }
+/* LASD rank pills */
+.rank-deputy     { background: rgba(30,77,43,0.5);    color: #7ec891;        border: 1px solid #2d6e40; }
+.rank-sr_deputy  { background: rgba(30,77,43,0.3);    color: #a8d8b0;        border: 1px solid #4a9e5c; }
+
+/* ── Department Selector ──────────────────────────────── */
+.dept-selector {
+  display: flex;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+
+.dept-btn {
+  flex: 1;
+  padding: 14px;
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.2s, color 0.2s;
+}
+
+.dept-btn + .dept-btn { border-left: 1px solid var(--border); }
+.dept-btn:hover       { color: var(--text); background: rgba(255,255,255,0.04); }
+
+.dept-btn[data-dept="lapd"].active { background: #003087; color: #c8a951; }
+.dept-btn[data-dept="lasd"].active { background: #1e4d2b; color: #7ec891; }
 
 .btn-sm {
   padding: 4px 12px;

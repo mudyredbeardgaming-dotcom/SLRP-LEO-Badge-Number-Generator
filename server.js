@@ -12,10 +12,11 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Assign a new badge
 app.post("/api/assign", async (req, res) => {
-  const { name, rank } = req.body;
-  if (!name || !rank) return res.status(400).json({ error: "name and rank are required." });
+  const { name, rank, department } = req.body;
+  if (!name || !rank || !department)
+    return res.status(400).json({ error: "name, rank, and department are required." });
   try {
-    const result = await assignBadge(name.trim(), rank.trim());
+    const result = await assignBadge(name.trim(), rank.trim(), department.trim());
     res.json({ success: true, data: result });
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -24,10 +25,11 @@ app.post("/api/assign", async (req, res) => {
 
 // Promote to a new rank
 app.post("/api/promote", async (req, res) => {
-  const { name, newRank } = req.body;
-  if (!name || !newRank) return res.status(400).json({ error: "name and newRank are required." });
+  const { name, newRank, department } = req.body;
+  if (!name || !newRank || !department)
+    return res.status(400).json({ error: "name, newRank, and department are required." });
   try {
-    const result = await promoteBadge(name.trim(), newRank.trim());
+    const result = await promoteBadge(name.trim(), newRank.trim(), department.trim());
     res.json({ success: true, data: result });
   } catch (err) {
     res.status(400).json({ error: err.message });
@@ -36,26 +38,35 @@ app.post("/api/promote", async (req, res) => {
 
 // Lookup by name
 app.get("/api/lookup/:name", async (req, res) => {
-  const result = await lookupBadge(decodeURIComponent(req.params.name));
+  const { department } = req.query;
+  if (!department) return res.status(400).json({ error: "department query param is required." });
+  const result = await lookupBadge(decodeURIComponent(req.params.name), department);
   if (!result) return res.status(404).json({ error: "Officer not found." });
   res.json({ success: true, data: result });
 });
 
 // Remove an officer
 app.delete("/api/remove/:name", async (req, res) => {
+  const { department } = req.query;
+  if (!department) return res.status(400).json({ error: "department query param is required." });
   try {
-    await removeBadge(decodeURIComponent(req.params.name));
+    await removeBadge(decodeURIComponent(req.params.name), department);
     res.json({ success: true });
   } catch (err) {
     res.status(400).json({ error: err.message });
   }
 });
 
-// List all (optionally filtered by rank)
+// List all (filtered by department, optionally by rank)
 app.get("/api/list", async (req, res) => {
-  const { rank } = req.query;
-  const result = await listBadges(rank || null);
-  res.json({ success: true, data: result });
+  const { department, rank } = req.query;
+  if (!department) return res.status(400).json({ error: "department query param is required." });
+  try {
+    const result = await listBadges(department, rank || null);
+    res.json({ success: true, data: result });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 // Connect to MongoDB then start server

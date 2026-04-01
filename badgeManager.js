@@ -9,11 +9,12 @@ const RANK_RANGES = {
     officer:    { min: 4000, max: 4100 },
   },
   lasd: {
-    lieutenant: { min: 1000, max: 1200 },
-    detective:  { min: 2000, max: 2100 },
-    sergeant:   { min: 2000, max: 2100 },
-    sr_deputy:  { min: 3000, max: 3100 },
-    deputy:     { min: 4000, max: 4100 },
+    lieutenant:     { min: 1500, max: 1600 },
+    detective:      { min: 2500, max: 2600 },
+    watch_sergeant: { min: 2500, max: 2600 },
+    field_sergeant: { min: 3500, max: 3600 },
+    sr_deputy:      { min: 4500, max: 4600 },
+    deputy:         { min: 5500, max: 5600 },
   },
 };
 

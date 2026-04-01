@@ -259,8 +259,10 @@ tbody td {
 .rank-lieutenant { background: rgba(88,166,255,0.15); color: #a5d6ff;        border: 1px solid #58a6ff; }
 .rank-detective  { background: rgba(192,57,43,0.2);   color: #ff9e9e;        border: 1px solid var(--red); }
 /* LASD rank pills */
-.rank-deputy     { background: rgba(30,77,43,0.5);    color: #7ec891;        border: 1px solid #2d6e40; }
-.rank-sr_deputy  { background: rgba(30,77,43,0.3);    color: #a8d8b0;        border: 1px solid #4a9e5c; }
+.rank-deputy         { background: rgba(30,77,43,0.5);   color: #7ec891;  border: 1px solid #2d6e40; }
+.rank-sr_deputy      { background: rgba(30,77,43,0.3);   color: #a8d8b0;  border: 1px solid #4a9e5c; }
+.rank-watch_sergeant { background: rgba(200,169,81,0.2); color: var(--gold-lt); border: 1px solid var(--gold); }
+.rank-field_sergeant { background: rgba(180,140,60,0.25);color: #d4b86a;  border: 1px solid #b8960c; }
 
 /* ── Department Selector ──────────────────────────────── */
 .dept-selector {

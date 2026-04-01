@@ -17,11 +17,12 @@ const DEPT_CONFIG = {
     subtitle: "Los Angeles Sheriff\u2019s Department \u2014 GTA V RP",
     seal:     "LASD logo.png?v=2",
     ranks: [
-      { value: "lieutenant", label: "Lieutenant"  },
-      { value: "detective",  label: "Detective"   },
-      { value: "sergeant",   label: "Sergeant"    },
-      { value: "sr_deputy",  label: "Sr. Deputy"  },
-      { value: "deputy",     label: "Deputy"      },
+      { value: "lieutenant",     label: "Lieutenant"      },
+      { value: "detective",      label: "Detective"       },
+      { value: "watch_sergeant", label: "Watch Sergeant"  },
+      { value: "field_sergeant", label: "Field Sergeant"  },
+      { value: "sr_deputy",      label: "Sr. Deputy"      },
+      { value: "deputy",         label: "Deputy"          },
     ],
   },
 };
